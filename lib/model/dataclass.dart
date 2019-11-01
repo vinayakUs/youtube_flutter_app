@@ -1,18 +1,22 @@
-import 'package:flutter/cupertino.dart';
 
 class VideoData {
-  String title, url;
-  Image thumbnailimage;
-  Image circularavator;
-  var views;
-  String date;
-  String channelname;
+  var videotitle, videoid;
+  var thumbnailimage;
+  var date;
+  var playurl;
   VideoData(
-      {this.title,
-      this.url,
-      this.thumbnailimage,
-      this.circularavator,
-      this.views,
+      {this.thumbnailimage,
       this.date,
-      this.channelname});
+      this.playurl,
+      this.videoid,
+      this.videotitle});
+  set url(String id) {
+    playurl = id;
+  }
+
+  VideoData.fromJson(Map<String, dynamic> json)
+      : videotitle = json['snippet']["title"],
+        videoid = json['id'],
+        thumbnailimage = json['snippet']["thumbnails"]["medium"]["url"],
+        date = json['snippet']["publishedAt"];
 }
